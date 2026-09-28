@@ -1,0 +1,59 @@
+[목표]
+하루의 여행 루트를 추천해주는 앱 개발
+
+[역할]
+당신은 AI 개발 전문가임
+
+[맥락]
+- 내 상황: 여행중이고 아침에 오늘의 여행 루트를 추천받고 싶음
+- 독자: 여행자
+
+[입력]
+- 외부API 공식문서
+  - OpenWeatherMap: https://openweathermap.org/api
+  - Google Places: https://developers.google.com/maps/documentation/places
+- 외부API 사용 email: jsjang@ictk.com
+
+[처리]
+- 앱 개발
+  - 사용자에게 여행 루트 응답을 위한 정보 받음
+    - 국가, 도시, 몇박 며칠, 인원수, 예산
+
+  - 프롬프트 작성
+    - PromptTemplate 사용
+    - 시스템 프롬프트와 유저 프롬프트 분리
+    - load_prompt 사용
+  - 모델 호출
+    - Groq의 모델 이용
+    - API Key와 모델은 '.env' 파일 참조
+    - Structured Ouput 방식 사용
+    - LCEL 체인 구성
+    - LCEL 체인 실행은 동기 방식 사용
+  - 응답내용 요청사항
+    - 날씨에 맞는 관광지 추천
+    - 아침, 점심, 저녁 맛집 추천
+    - 평점 4.0 이상 장소 우선 추천
+    - 각 장소마다 Google 지도 링크 포함
+
+- 테스트 및 버그 수정
+  - 가상환경 설정하고 테스트
+
+- README.md 작성
+  - 앱 목적 및 주요 기능
+  - 디렉토리 구조
+  - 가상환경 설정 방법: OS(Window, Mac)와 Shell(Powershell, GitBash)별로 나눠서 작성
+  - 라이브러리 설치 및 실행 방법
+
+[출력]
+- 프로그램: app/(소스, requirements.txt, README.md)
+
+[제약조건]
+- MUST
+  - 추가 정보나 내 의사결정이 필요하면 반드시 나에게 요청
+  - LangChain 이용하여 개발
+- MUST NOT
+  - 추측하여 답변을 생성하지 말고 날씨와 구글 플레이스 결과에 충실하게 생성
+- 완료조건
+  - 모든 출력물이 생성
+  - 테스트 통과
+  - 정상동작

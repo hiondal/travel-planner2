@@ -1,0 +1,37 @@
+_type: prompt
+input_variables:
+  - country
+  - city
+  - nights
+  - days
+  - party_size
+  - budget_krw
+  - weather_block
+  - attraction_block
+  - restaurant_block
+template: |
+  아래 조건으로 여행 루트를 만들어 주세요.
+
+  <여행조건>
+  국가: {country}
+  도시: {city}
+  기간: {nights}박 {days}일
+  인원: {party_size}명
+  총예산: {budget_krw}원
+  </여행조건>
+
+  <날씨예보>
+  {weather_block}
+  </날씨예보>
+
+  <관광지검색결과>
+  {attraction_block}
+  </관광지검색결과>
+
+  <맛집검색결과>
+  {restaurant_block}
+  </맛집검색결과>
+
+  위 세 자료 안에 있는 내용만 사용해서 {days}일치 루트를 날짜 순서대로 만들어 주세요.
+  하루마다 관광지와 아침·점심·저녁 식사를 모두 채우고,
+  각 장소를 그날 날씨와 연결해서 왜 그때 가는 것이 좋은지 설명해 주세요.
