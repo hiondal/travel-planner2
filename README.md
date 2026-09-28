@@ -65,7 +65,24 @@ travel-planner/
 
 ## 사전 준비 — API 키 발급
 
-프로젝트 루트에 `.env` 파일을 만들고 아래 값을 채움. `.env.example`을 복사해 쓰면 편함.
+> ### ⚠️ `.env` 실제값은 등록하지 않음
+>
+> `.env`의 API 키 실제값은 **개인 발급분이므로 이 저장소에 등록하지 않음.**  
+> 저장소에는 키 이름과 형식만 담은 `.env.example`만 포함됨.
+>
+> 따라서 **내려받은 뒤 바로 실행되지 않으며**, 아래 절차대로 본인 키를 발급받아  
+> `.env`를 직접 만들어야 함.
+>
+> - `.env`는 `.gitignore`에 등록되어 있어 실수로 커밋되지 않음
+> - 커밋 전 확인: `git check-ignore -v .env` → `.gitignore:4:*.env` 가 출력되면 정상
+> - 키가 외부에 노출되면 즉시 발급처에서 **폐기 후 재발급**할 것
+
+프로젝트 루트에 `.env` 파일을 만들고 아래 값을 채움. 아래처럼 `.env.example`을 복사해 쓰면 편함.
+
+```bash
+cp .env.example .env
+```
+
 
 ```text
 GROQ_API_KEY=gsk_...
@@ -94,9 +111,6 @@ OLLAMA_BASE_URL=http://localhost:11434
 > 2026-09-28 기준 이 계정에서 사용 가능한 채팅 모델: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`,
 > `qwen/qwen3.8-27b`, `allam-2-7b`.
 
-
-> ⚠️ `.env`는 `.gitignore`에 등록되어 있음. 절대 커밋하지 말 것.  
-> 커밋 전 확인: `git check-ignore -v .env`
 
 ---
 

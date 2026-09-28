@@ -86,6 +86,9 @@ ollama list
 
 ### 3. `.env` 설정
 
+> ⚠️ `.env`의 API 키 실제값은 개인 발급분이라 저장소에 등록하지 않음.  
+> `.env.example`을 복사해 본인 키로 채울 것 — 자세한 내용은 [루트 README](../README.md#사전-준비--api-키-발급) 참고.
+
 프로젝트 루트의 `.env`에 아래 값이 필요함. LLM API 키는 필요 없음.
 
 ```text
