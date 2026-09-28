@@ -58,7 +58,6 @@ travel-planner/
 ├── local-llm-clone/         클론 코딩 결과 (local-llm/ 과 동일 구성)
 │
 ├── prompts/                 과제 수행용 프롬프트 (8섹션 표준)
-├── docs/                    느낀점·배운점 기록
 └── images/                  실행 화면 캡처
 ```
 
@@ -203,4 +202,3 @@ python main.py
 
 - [Cloud LLM 버전 상세 README](app/README.md)
 - [Local LLM 버전 상세 README](local-llm/README.md)
-- [느낀점·배운점](docs/느낀점-배운점.md)

@@ -11,6 +11,9 @@ __pycache__/
 venv/
 env/
 
+# 학습 기록 (로컬 보관, 원격 미공개)
+docs/
+
 # 도구
 .temp/
 *.log
