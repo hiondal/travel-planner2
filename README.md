@@ -70,7 +70,7 @@ travel-planner/
 
 ```text
 GROQ_API_KEY=gsk_...
-GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_MODEL=openai/gpt-oss-120b
 OPENWEATHER_API_KEY=...
 GOOGLE_PLACES_API_KEY=...
 CONTACT_EMAIL=your-id@example.com
@@ -81,9 +81,20 @@ OLLAMA_BASE_URL=http://localhost:11434
 | 키 | 발급처 | 주의사항 |
 |----|--------|---------|
 | `GROQ_API_KEY` | https://console.groq.com/keys | 무료 티어 제공 |
-| `GROQ_MODEL` | https://console.groq.com/docs/models | 제공 모델명이 자주 바뀜. 콘솔에서 현재 값 확인 |
+| `GROQ_MODEL` | https://console.groq.com/docs/models | **계정마다 제공 모델이 다름.** 아래 확인 방법 참고 |
 | `OPENWEATHER_API_KEY` | https://home.openweathermap.org/api_keys | 발급 직후 활성화까지 수십 분 소요 |
 | `GOOGLE_PLACES_API_KEY` | https://console.cloud.google.com/apis/credentials | **Places API (New)** 를 별도로 사용 설정해야 함 |
+
+> **`GROQ_MODEL` 확인 방법** — 제공 모델은 계정·시점에 따라 다름. 아래로 현재 목록을 조회함.
+>
+> ```bash
+> curl -s -H "Authorization: Bearer $GROQ_API_KEY" https://api.groq.com/openai/v1/models
+> ```
+>
+> `whisper-*`(음성), `*prompt-guard*`(분류 전용)는 채팅용이 아니므로 제외하고 고름.
+> 2026-09-28 기준 이 계정에서 사용 가능한 채팅 모델: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`,
+> `qwen/qwen3.8-27b`, `allam-2-7b`.
+
 
 > ⚠️ `.env`는 `.gitignore`에 등록되어 있음. 절대 커밋하지 말 것.  
 > 커밋 전 확인: `git check-ignore -v .env`

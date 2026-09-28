@@ -55,8 +55,11 @@ def build_context(user_input: Dict, settings: Settings) -> Dict:
     weather_block = weather_tool.format_for_prompt(forecast, days)
 
     # 2) 관광지 — 작은 모델이므로 후보 수를 줄여 컨텍스트 부담을 낮춤
+    # 검색어는 영문으로 구성함 — Places Text Search는 한글 검색어에서
+    # 결과가 0건이거나 무관한 장소가 나오는 경우가 있음.
+    # languageCode="ko" 덕분에 결과 이름·주소는 한글로 받음.
     attractions = places_tool.search_places(
-        query=f"{city} 관광지 명소",
+        query=f"tourist attractions in {city}, {country}",
         api_key=settings.google_places_api_key,
         max_results=6,
     )
@@ -64,7 +67,7 @@ def build_context(user_input: Dict, settings: Settings) -> Dict:
 
     # 3) 맛집
     restaurants = places_tool.search_places(
-        query=f"{city} 맛집",
+        query=f"best restaurants in {city}, {country}",
         api_key=settings.google_places_api_key,
         max_results=6,
     )

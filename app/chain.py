@@ -57,14 +57,19 @@ def build_context(user_input: Dict, settings: Settings) -> Dict:
     weather_block = weather_tool.format_for_prompt(forecast, days)
 
     # 2) 관광지
+    # 검색어는 영문으로 구성함 — Places Text Search는 한글 검색어에서
+    # 결과가 0건이거나 무관한 장소가 나오는 경우가 있음.
+    # languageCode="ko" 덕분에 결과 이름·주소는 한글로 받음.
     attractions = places_tool.search_places(
-        query=f"{city} 관광지 명소", api_key=settings.google_places_api_key
+        query=f"tourist attractions in {city}, {country}",
+        api_key=settings.google_places_api_key,
     )
     attraction_block = places_tool.format_for_prompt("관광지", attractions)
 
     # 3) 맛집
     restaurants = places_tool.search_places(
-        query=f"{city} 맛집", api_key=settings.google_places_api_key
+        query=f"best restaurants in {city}, {country}",
+        api_key=settings.google_places_api_key,
     )
     restaurant_block = places_tool.format_for_prompt("맛집", restaurants)
 
@@ -83,6 +88,9 @@ def build_chain(settings: Settings) -> Runnable:
         api_key=settings.groq_api_key,
         model=settings.groq_model,
         temperature=0.3,  # 사실 기반 정리 작업이므로 낮게 유지
+        # 여행 계획 JSON은 길이가 꽤 됨. 한도가 작으면 응답이 중간에 잘려
+        # "Failed to parse tool call arguments as JSON" 오류가 남
+        max_tokens=16384,
     )
 
     # with_structured_output: 응답을 TravelPlan 스키마에 맞춰 받음
