@@ -88,6 +88,11 @@ def build_chain(settings: Settings) -> Runnable:
         model=settings.ollama_model,
         base_url=settings.ollama_base_url,
         temperature=0.3,  # 사실 기반 정리 작업이므로 낮게 유지
+        # Ollama 기본 컨텍스트는 4096 토큰이라 프롬프트(날씨 + 장소 12곳)와
+        # 긴 JSON 응답을 합치면 모자람. 부족하면 응답이 중간에 잘려
+        # "Failed to parse TravelPlan ... Field required" 오류가 남
+        num_ctx=16384,
+        num_predict=8192,
     )
 
     # with_structured_output: 응답을 TravelPlan 스키마에 맞춰 받음
